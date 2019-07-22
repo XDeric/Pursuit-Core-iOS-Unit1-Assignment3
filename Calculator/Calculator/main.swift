@@ -15,7 +15,6 @@ import Foundation
 //
 //print("Please enter your 2 numbers and an operand of either +,-,*,/")
 //
-//var counter = 3
 //print("Number1:", terminator: "")
 //var num1 = 0.0
 //if let input1 = readLine(){
@@ -47,6 +46,11 @@ import Foundation
 //    print("Not an operand)")
 //}
 
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+
+
 //PART 1B and 1C
 //import Foundation
 //var operations: ([String: (Double, Double) -> Double]) = ["+": { $0 + $1 },
@@ -55,7 +59,6 @@ import Foundation
 //                                                          "/": { $0 / $1 },]
 //print("Please enter your 2 numbers and an operand of either +,-,*,/ or ? for minigame")
 //
-//var counter = 3
 //print("Number1:", terminator: " ")
 //var num1 = 0.0
 //if let input1 = readLine(){
@@ -143,3 +146,134 @@ import Foundation
 //    print("Not an operand)")
 //}
 
+
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+
+
+//question 2
+print("Choose a Highorder Function map,filter,reduce")
+
+print("map, filter, reduce :", terminator: "")
+var choice1 = String()
+if let input1 = readLine(){
+    choice1 = input1
+}
+print("choose your numbers for the array with spaces please:")
+var choice2 = String()
+if let input2 = readLine(){
+    choice2 = input2
+}
+var convert = choice2.components(separatedBy:" ")
+var intConvert = [Int]()
+for i in convert{
+    intConvert.append(Int(i) ?? 0)
+}
+print(intConvert)
+
+
+print("Available operands for map +,-,*,/")
+print("Available operands for filter <,>")
+print("Available operands for reduce +,*")
+print("Choose an operand:", terminator: "")
+let input3 = readLine()
+
+
+print("Choose a number to alter by:", terminator: "")
+var num1 = 0
+if let input4 = readLine(){
+    num1 = Int(input4) ?? 0
+}
+
+var emptyArr2 = [Int]()
+func myMap(inputArray: [Int], map: Int) -> [Int]{
+    //var emptyArr2 = [Int]()
+    switch input3 {
+    case "+":
+        for i in inputArray{
+            emptyArr2.append(i + map)
+        }
+        break
+    case "-":
+        for i in inputArray{
+            emptyArr2.append(i - map)
+        }
+        break
+    case "*":
+        for i in inputArray{
+            emptyArr2.append(i * map)
+        }
+        break
+    case "/":
+        for i in inputArray{
+            emptyArr2.append(i / map)
+        }
+        break
+    default:
+        emptyArr2 = [Int]() // reset
+        print("Not an operand within map)")
+    }
+    return emptyArr2
+}
+var emptyArr1 = [Int]()
+func myFilter(inputArray: [Int], filter: (Int))-> [Int]{
+    //var emptyArr1 = [Int]()
+    switch input3 {
+    case ">":
+        for i in inputArray{
+            if i > num1 {
+                emptyArr1.append(i)
+            }
+        }
+        break
+    case "<":
+        for i in inputArray{
+            if i < num1{
+                emptyArr1.append(i)
+            }
+        }
+    default:
+        print("Iunno")
+    }
+    return emptyArr1
+}
+
+
+var emptyArr3 = Int()
+func myReduce(inputArray: [Int], reduce: (Int)) -> Int{
+    //var emptyArr3 = [Int]()
+    switch input3{
+    case "+":
+        for i in inputArray{
+            emptyArr3 = emptyArr3 + num1
+            emptyArr3 += i
+        }
+        break
+    case "*":
+        for i in inputArray{
+            emptyArr3 = emptyArr3 + num1
+            emptyArr3 *= i
+        }
+    default:
+        print("Iunno")
+    }
+    return emptyArr3
+}
+
+
+switch choice1{
+case "map":
+    myMap(inputArray: intConvert, map: num1)
+    print(emptyArr2)
+    break
+case "filter":
+    myFilter(inputArray: intConvert, filter: (num1))
+    print(emptyArr1)
+    break
+case "reduce":
+    myReduce(inputArray: intConvert, reduce: (num1))
+    print(emptyArr3)
+    break
+default:
+    print("don't break my code")
+}
